@@ -1,19 +1,20 @@
 package br.edu.infnet.appRegistroProducao;
 
 import br.edu.infnet.appRegistroProducao.model.domain.Cliente;
+import br.edu.infnet.appRegistroProducao.model.service.ClienteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 public class ClienteLoader implements ApplicationRunner {
 
-    private Map<String, Cliente> mapa = new HashMap<String, Cliente>();
+    @Autowired
+    private ClienteService clienteService;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -28,22 +29,17 @@ public class ClienteLoader implements ApplicationRunner {
             campos = line.split(";");
             System.out.println(line);
             line = br.readLine();
-            Cliente c =new Cliente();
-            c.setNome(campos[0]);
-            c.setCnpjOuCpf(campos[1]);
-            c.setTelefone(campos[2]);
-            c.setEmail(campos[3]);
+            Cliente cliente =new Cliente();
+            cliente.setNome(campos[0]);
+            cliente.setCnpjOuCpf(campos[1]);
+            cliente.setTelefone(campos[2]);
+            cliente.setEmail(campos[3]);
 
-            mapa.put(c.getCnpjOuCpf(), c);
+            clienteService.incluir(cliente);
 
             line = br.readLine();
         }
-
-        for (String cpfOuCnpj : mapa.keySet()){
-            System.out.println(cpfOuCnpj);
-        }
-
-        for(Cliente c : mapa.values()){
+        for(Cliente c : clienteService.obterLista()){
             System.out.println(c);
         }
         br.close();

@@ -1,19 +1,20 @@
 package br.edu.infnet.appRegistroProducao;
 
 import br.edu.infnet.appRegistroProducao.model.domain.Artesao;
+import br.edu.infnet.appRegistroProducao.model.service.ArtesaoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 public class ArtesaoLoader implements ApplicationRunner {
 
-    private Map<String, Artesao> mapa = new HashMap<String, Artesao>();
+    @Autowired
+    private ArtesaoService artesaoService;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -28,21 +29,17 @@ public class ArtesaoLoader implements ApplicationRunner {
             campos = line.split(";");
             System.out.println(line);
             line = br.readLine();
-            Artesao a =new Artesao();
-            a.setNome(campos[0]);
-            a.setCpf(campos[1]);
-            a.setTelefone(campos[4]);
+            Artesao artesao =new Artesao();
+            artesao.setNome(campos[0]);
+            artesao.setCpf(campos[1]);
+            artesao.setTelefone(campos[4]);
 
-            mapa.put(a.getCpf(), a);
+            artesaoService.incluir(artesao);
 
             line = br.readLine();
         }
 
-        for (String cpf : mapa.keySet()){
-            System.out.println(cpf);
-        }
-
-        for(Artesao a : mapa.values()){
+        for(Artesao a : artesaoService.obterLista()){
             System.out.println(a);
         }
         br.close();
