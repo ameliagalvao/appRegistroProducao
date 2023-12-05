@@ -20,7 +20,6 @@ public class ArtesaoLoader implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         FileReader file = new FileReader("files/artesaos.txt");
         BufferedReader br = new BufferedReader(file);
-        br.close();
 
         String line = br.readLine();
         String[] campos = null;

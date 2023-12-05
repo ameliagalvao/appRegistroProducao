@@ -20,8 +20,6 @@ public class PilotoLoader implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         FileReader file = new FileReader("files/pilotos.txt");
         BufferedReader br = new BufferedReader(file);
-        br.close();
-
         String line = br.readLine();
         String[] campos = null;
 
