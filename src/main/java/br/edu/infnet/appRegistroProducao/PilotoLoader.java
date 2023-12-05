@@ -1,5 +1,6 @@
-package br.edu.infnet.appRegistroProducao.model.domain;
+package br.edu.infnet.appRegistroProducao;
 
+import br.edu.infnet.appRegistroProducao.model.domain.Piloto;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -10,13 +11,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class ProdutoAptoProducaoLoader implements ApplicationRunner {
+public class PilotoLoader implements ApplicationRunner {
 
-    private Map<String, ProdutoAptoProducao> mapa = new HashMap<String, ProdutoAptoProducao>();
+    private Map<String, Piloto> mapa = new HashMap<String, Piloto>();
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        FileReader file = new FileReader("files/produtosaptos.txt");
+        FileReader file = new FileReader("files/pilotos.txt");
         BufferedReader br = new BufferedReader(file);
         br.close();
 
@@ -27,7 +28,7 @@ public class ProdutoAptoProducaoLoader implements ApplicationRunner {
             campos = line.split(";");
             System.out.println(line);
             line = br.readLine();
-            ProdutoAptoProducao p =new ProdutoAptoProducao();
+            Piloto p =new Piloto();
             p.setSku(campos[0]);
             p.setNome(campos[1]);
             p.setTempoProducao(Float.parseFloat(campos[2]));
@@ -36,18 +37,19 @@ public class ProdutoAptoProducaoLoader implements ApplicationRunner {
             p.setCustoTotalMateriais(Float.parseFloat(campos[4]));
             p.setCustoTotalMaoDeObra(Float.parseFloat(campos[5]));
             p.setCustoTotalProduto(Float.parseFloat(campos[6]));
-            p.setLucro(Float.parseFloat(campos[8]));
-            p.setPrecoFinal(Float.parseFloat(campos[9]));
+            p.setAprovado(Boolean.parseBoolean(campos[7]));
+
             mapa.put(p.getSku(), p);
 
             line = br.readLine();
         }
 
+
         for (String sku : mapa.keySet()){
             System.out.println(sku);
         }
 
-        for(ProdutoAptoProducao p : mapa.values()){
+        for(Piloto p : mapa.values()){
             System.out.println(p);
         }
         br.close();

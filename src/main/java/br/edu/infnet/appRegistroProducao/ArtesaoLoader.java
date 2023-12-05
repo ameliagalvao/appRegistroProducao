@@ -1,5 +1,6 @@
-package br.edu.infnet.appRegistroProducao.model.domain;
+package br.edu.infnet.appRegistroProducao;
 
+import br.edu.infnet.appRegistroProducao.model.domain.Artesao;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
