@@ -18,7 +18,7 @@ public class PilotoLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        FileReader file = new FileReader("files/pilotos.txt");
+        FileReader file = new FileReader("C:\\Users\\aninh\\Documents\\Infnet\\Backend\\PB\\appRegistroProducao\\appRegistroProducao\\src\\main\\resources\\files\\pilotos.txt");
         BufferedReader br = new BufferedReader(file);
         String line = br.readLine();
         String[] campos = null;

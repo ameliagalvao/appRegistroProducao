@@ -18,7 +18,7 @@ public class ArtesaoLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        FileReader file = new FileReader("files/artesaos.txt");
+        FileReader file = new FileReader("C:\\Users\\aninh\\Documents\\Infnet\\Backend\\PB\\appRegistroProducao\\appRegistroProducao\\src\\main\\resources\\files\\artesaos.txt");
         BufferedReader br = new BufferedReader(file);
 
         String line = br.readLine();
