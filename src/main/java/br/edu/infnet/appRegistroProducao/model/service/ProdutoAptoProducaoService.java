@@ -1,19 +1,21 @@
 package br.edu.infnet.appRegistroProducao.model.service;
 
+import br.edu.infnet.appRegistroProducao.model.domain.Piloto;
 import br.edu.infnet.appRegistroProducao.model.domain.ProdutoAptoProducao;
+import br.edu.infnet.appRegistroProducao.model.repositories.ProdutoAptoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 @Service
 public class ProdutoAptoProducaoService {
-    private Map<String, ProdutoAptoProducao> mapa = new HashMap<String, ProdutoAptoProducao>();
+    @Autowired
+    private ProdutoAptoRepository produtoAptoRepository;
 
-    public void incluir (ProdutoAptoProducao produto){
-        mapa.put(produto.getSku(), produto);
+    public void incluir (ProdutoAptoProducao produtoAptoProducao){
+        produtoAptoRepository.save(produtoAptoProducao);
     }
     public Collection<ProdutoAptoProducao> obterLista(){
-        return  mapa.values();
+        return (Collection<ProdutoAptoProducao>) produtoAptoRepository.findAll();
     }
 }

@@ -1,19 +1,21 @@
 package br.edu.infnet.appRegistroProducao.model.service;
 
 import br.edu.infnet.appRegistroProducao.model.domain.Piloto;
+import br.edu.infnet.appRegistroProducao.model.repositories.PilotoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+
 @Service
 public class PilotoService {
-    private Map<String, Piloto> mapa = new HashMap<String, Piloto>();
+    @Autowired
+    private PilotoRepository pilotoRepository;
 
     public void incluir (Piloto piloto){
-        mapa.put(piloto.getSku(), piloto);
+        pilotoRepository.save(piloto);
     }
     public Collection<Piloto> obterLista(){
-        return mapa.values();
+        return (Collection<Piloto>) pilotoRepository.findAll();
     }
 }
