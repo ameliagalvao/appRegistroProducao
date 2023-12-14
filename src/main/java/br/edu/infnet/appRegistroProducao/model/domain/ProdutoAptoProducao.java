@@ -1,11 +1,13 @@
 package br.edu.infnet.appRegistroProducao.model.domain;
 
+import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
 @Getter
 @Setter
+@Entity
 public class ProdutoAptoProducao extends Produto {
 
     //private List<String> variacoes;
