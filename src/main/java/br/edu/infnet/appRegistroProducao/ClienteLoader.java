@@ -5,10 +5,13 @@ import br.edu.infnet.appRegistroProducao.model.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 @Component
 public class ClienteLoader implements ApplicationRunner {
@@ -18,29 +21,35 @@ public class ClienteLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        FileReader file = new FileReader("C:\\Users\\aninh\\Documents\\Infnet\\Backend\\PB\\appRegistroProducao\\appRegistroProducao\\src\\main\\resources\\files\\clientes.txt");
-        BufferedReader br = new BufferedReader(file);
+        try {
+            // Load the file from the classpath
+            ClassPathResource resource = new ClassPathResource("files/clientes.txt");
+            InputStream inputStream = resource.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
 
-        String line = br.readLine();
-        String[] campos = null;
+            String line = br.readLine();
+            String[] campos;
 
-        while (line != null){
-            campos = line.split(";");
-            System.out.println(line);
-            line = br.readLine();
-            Cliente cliente =new Cliente();
-            cliente.setNome(campos[0]);
-            cliente.setCnpjOuCpf(campos[1]);
-            cliente.setTelefone(campos[2]);
-            cliente.setEmail(campos[3]);
+            while (line != null) {
+                campos = line.split(";");
+                System.out.println(line);
 
-            clienteService.incluir(cliente);
+                Cliente cliente = new Cliente();
+                cliente.setNome(campos[0]);
+                cliente.setCnpjOuCpf(campos[1]);
+                cliente.setTelefone(campos[2]);
+                cliente.setEmail(campos[3]);
 
-            line = br.readLine();
+                clienteService.incluir(cliente);
+
+                line = br.readLine();
+            }
+
+            for (Cliente c : clienteService.obterLista()) {
+                System.out.println(c);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        for(Cliente c : clienteService.obterLista()){
-            System.out.println(c);
-        }
-        br.close();
     }
 }
