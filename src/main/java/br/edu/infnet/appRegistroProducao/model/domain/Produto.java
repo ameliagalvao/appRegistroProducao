@@ -1,5 +1,9 @@
 package br.edu.infnet.appRegistroProducao.model.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,7 +11,12 @@ import java.util.List;
 import java.util.Map;
 @Getter
 @Setter
+@Entity
 public abstract class Produto {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idProduto;
     private String sku;
     private String nome;
     //private List<String> tecnica;
