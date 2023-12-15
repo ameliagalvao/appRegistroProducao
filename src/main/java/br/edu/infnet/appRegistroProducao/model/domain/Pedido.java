@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 @Setter
 @Getter
@@ -22,6 +23,8 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name = "idPedidoCliente")
     private Cliente cliente;
+    @OneToMany(mappedBy = "pedido")
+    private List<Producao> producoes;
     private boolean isPago;
     @Transient
     private AndamentoEnum andamentoPedido;

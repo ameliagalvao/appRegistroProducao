@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 @Setter
 @Getter
@@ -19,10 +20,25 @@ public class Producao {
     private AndamentoEnum andamentoProducao;
     private LocalDateTime dataEfetivaTermino;
     private LocalDateTime prazo;
-    @Transient
+    @ManyToOne
+    @JoinColumn(name = "idPedido")
     private Pedido pedido;
-    @Transient
-    private Map<Artesao, Produto> listaArtesao;
+    @ManyToMany
+    @JoinTable(
+            name = "producao_artesao",
+            joinColumns = @JoinColumn(name = "producao_id"),
+            inverseJoinColumns = @JoinColumn(name = "artesao_id")
+    )
+    private List<Artesao> artesaos;
+
+    @ElementCollection
+    @CollectionTable(
+            name = "producao_artesao_produto",
+            joinColumns = @JoinColumn(name = "producao_id")
+    )
+    @MapKeyJoinColumn(name = "artesao_id")
+    @Column(name = "produto_id")
+    private Map<Artesao, Produto> artesaoProducao;
 
     public LocalDateTime calcularPrazo(LocalDateTime dataInicio, LocalDateTime dataEstimadaTermino){
         return null;
