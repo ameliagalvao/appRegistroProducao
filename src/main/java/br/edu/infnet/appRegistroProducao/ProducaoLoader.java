@@ -1,2 +1,7 @@
-package br.edu.infnet.appRegistroProducao;public class ProducaoLoader {
-}
+//package br.edu.infnet.appRegistroProducao;
+//
+//import org.springframework.stereotype.Component;
+//
+//@Component
+//public class ProducaoLoader {
+//}

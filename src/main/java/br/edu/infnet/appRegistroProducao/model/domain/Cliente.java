@@ -1,9 +1,6 @@
 package br.edu.infnet.appRegistroProducao.model.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +9,7 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Cliente implements ClienteOuProspecto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +18,9 @@ public class Cliente implements ClienteOuProspecto {
     private String cnpjOuCpf;
     private String telefone;
     private String email;
-    //private List<Pedido> pedidos;
+    @OneToMany
+    @JoinColumn(name = "idPedidoCliente")
+    private List<Pedido> pedidos;
 
     @Override
     public String toString(){
