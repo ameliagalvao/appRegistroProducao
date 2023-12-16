@@ -27,12 +27,10 @@ public abstract class Produto {
     private float custoTotalMaoDeObra;
     private float custoTotalProduto;
 
-    @ManyToMany(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "idProducao")
-    private List<Producao> producoes;
+    @ManyToMany(mappedBy = "produtos")
+    private List<Pedido> producoes;
 
-    @ManyToMany(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "idPedido")
+    @ManyToMany(mappedBy = "produtos")
     private List<Pedido> pedidos;
 
     public String toString(){

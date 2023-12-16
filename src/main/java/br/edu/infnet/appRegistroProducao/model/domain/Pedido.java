@@ -18,10 +18,8 @@ public class Pedido {
     private LocalDateTime dataPedido;
     private LocalDateTime dataEntrega;
 
-    @ManyToMany
-    @JoinTable(name = "produtoPedido",
-            joinColumns = @JoinColumn(name = "idPedido"),
-            inverseJoinColumns = @JoinColumn(name = "idProduto"))
+    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "idPedido")
     private List<Produto> produtos;
 
     private float valorTotal;

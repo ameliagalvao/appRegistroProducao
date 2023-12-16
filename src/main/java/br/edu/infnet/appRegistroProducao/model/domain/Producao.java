@@ -27,10 +27,8 @@ public class Producao {
     @JoinColumn(name = "idArtesao")
     private Artesao artesao;
 
-    @ManyToMany
-    @JoinTable(name = "produtoProducao",
-            joinColumns = @JoinColumn(name = "idProducao"),
-            inverseJoinColumns = @JoinColumn(name = "idProduto"))
+    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "idPedido")
     private List<Produto> produtos;
 
     public float calcularProducaoArtesao(Map<Produto,Integer> produtoQuantidade){
