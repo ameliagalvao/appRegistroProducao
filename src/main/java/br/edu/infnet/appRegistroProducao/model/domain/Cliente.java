@@ -19,6 +19,10 @@ public class Cliente implements ClienteOuProspecto {
     private String telefone;
     private String email;
 
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "idEndereco")
+    private Endereco endereco;
+
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pedido> pedido;
 

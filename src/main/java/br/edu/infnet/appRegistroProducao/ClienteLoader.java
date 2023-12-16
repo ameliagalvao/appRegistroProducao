@@ -1,6 +1,7 @@
 package br.edu.infnet.appRegistroProducao;
 
 import br.edu.infnet.appRegistroProducao.model.domain.Cliente;
+import br.edu.infnet.appRegistroProducao.model.domain.Endereco;
 import br.edu.infnet.appRegistroProducao.model.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -41,6 +42,7 @@ public class ClienteLoader implements ApplicationRunner {
                 cliente.setCnpjOuCpf(campos[1]);
                 cliente.setTelefone(campos[2]);
                 cliente.setEmail(campos[3]);
+                cliente.setEndereco(new Endereco(campos[4]));
 
                 clienteService.incluir(cliente);
 
