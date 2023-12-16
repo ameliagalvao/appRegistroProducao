@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-@Order(1)
+@Order(4)
 @Component
 public class ClienteLoader implements ApplicationRunner {
 

@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-@Order(4)
+@Order(3)
 @Component
 public class ArtesaoLoader implements ApplicationRunner {
 

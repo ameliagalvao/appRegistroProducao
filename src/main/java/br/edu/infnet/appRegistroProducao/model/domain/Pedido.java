@@ -22,12 +22,8 @@ public class Pedido {
     private float valorTotal;
 
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "ClientePedido")
+    @JoinColumn(name = "idCliente")
     private Cliente cliente;
-
-    @OneToMany
-    @JoinColumn(name = "PedidoProducao")
-    private List<Producao> producoes;
 
     private boolean isPago;
 

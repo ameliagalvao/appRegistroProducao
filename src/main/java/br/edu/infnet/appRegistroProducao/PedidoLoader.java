@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
@@ -40,18 +39,18 @@ public class PedidoLoader implements ApplicationRunner {
             while (line != null) {
                 campos = line.split(";");
                 System.out.println(line);
-
+                Cliente cliente = new Cliente();
+                cliente.setIdCliente(Integer.valueOf(campos[5]));
                 Pedido pedido = new Pedido();
                 try {
-                    // ...
                     pedido.setDataPedido(LocalDate.parse(campos[0], DateTimeFormatter.ofPattern("dd/MM/yyyy").withLocale(new Locale("pt", "BR"))).atStartOfDay());
                     pedido.setDataEntrega(LocalDate.parse(campos[1], DateTimeFormatter.ofPattern("dd/MM/yyyy").withLocale(new Locale("pt", "BR"))).atStartOfDay());
-                    // ...
                 } catch (DateTimeParseException e) {
                     System.err.println("Error parsing date: ");
                     e.printStackTrace();
                 }
                 pedido.setPago(Boolean.parseBoolean(campos[4]));
+                pedido.setCliente(cliente);
 
                 pedidoService.incluir(pedido);
 

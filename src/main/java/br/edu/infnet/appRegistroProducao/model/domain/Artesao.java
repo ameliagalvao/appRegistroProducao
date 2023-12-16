@@ -21,10 +21,6 @@ public class Artesao {
     private Map<String, String> dadosPagamento;
     private String telefone;
 
-    @OneToMany
-    @JoinColumn(name = "ArtesaoProducao")
-    private List<Producao> listaProducao;
-
     @Override
     public String toString(){
         return String.format("nome (%s) - cpf (%s) - telefone (%s)", nome, cpf, telefone);

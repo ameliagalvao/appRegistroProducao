@@ -19,10 +19,6 @@ public class Cliente implements ClienteOuProspecto {
     private String telefone;
     private String email;
 
-    @OneToMany
-    @JoinColumn(name = "ClientePedido")
-    private List<Pedido> pedidos;
-
     @Override
     public String toString(){
         return String.format("nome (%s) - cnpjOuCpf (%s) - telefone (%s) - email (%s)", nome, cnpjOuCpf, telefone, email);

@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-@Order(2)
+@Order(1)
 @Component
 public class PilotoLoader implements ApplicationRunner {
 

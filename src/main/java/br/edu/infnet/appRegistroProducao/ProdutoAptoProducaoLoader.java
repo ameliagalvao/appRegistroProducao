@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-@Order(3)
+@Order(2)
 @Component
 public class ProdutoAptoProducaoLoader implements ApplicationRunner {
 

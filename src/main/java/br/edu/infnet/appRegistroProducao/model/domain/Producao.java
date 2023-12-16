@@ -19,16 +19,17 @@ public class Producao {
     private AndamentoEnum andamentoProducao;
 
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "PedidoProducao")
+    @JoinColumn(name = "idPedido")
     private Pedido pedido;
 
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "ArtesaoProducao")
+    @JoinColumn(name = "idArtesao")
     private Artesao artesao;
 
-    @ElementCollection
-    @MapKeyJoinColumn(name = "idProduto")
-    @Column(name = "integer_value")
+//    @ElementCollection
+//    @MapKeyJoinColumn(name = "idProduto")
+//    @Column(name = "integer_value")
+    @Transient
     private Map<Produto, Integer> produtoQuantidade;
 
     public float calcularProducaoArtesao(Map<Produto,Integer> produtoQuantidade){
