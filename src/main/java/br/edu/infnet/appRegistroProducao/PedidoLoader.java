@@ -2,6 +2,7 @@ package br.edu.infnet.appRegistroProducao;
 
 import br.edu.infnet.appRegistroProducao.model.domain.Cliente;
 import br.edu.infnet.appRegistroProducao.model.domain.Pedido;
+import br.edu.infnet.appRegistroProducao.model.domain.Produto;
 import br.edu.infnet.appRegistroProducao.model.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -17,6 +18,7 @@ import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Locale;
 
 @Order(5)
@@ -50,6 +52,7 @@ public class PedidoLoader implements ApplicationRunner {
                     e.printStackTrace();
                 }
                 pedido.setPago(Boolean.parseBoolean(campos[4]));
+                pedido.setProdutos(new ArrayList<Produto>());
                 pedido.setCliente(cliente);
 
                 pedidoService.incluir(pedido);

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 @Setter
 @Getter
@@ -18,19 +19,19 @@ public class Producao {
     private LocalDateTime dataFinal;
     private AndamentoEnum andamentoProducao;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne
     @JoinColumn(name = "idPedido")
     private Pedido pedido;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne
     @JoinColumn(name = "idArtesao")
     private Artesao artesao;
 
-//    @ElementCollection
-//    @MapKeyJoinColumn(name = "idProduto")
-//    @Column(name = "integer_value")
-    @Transient
-    private Map<Produto, Integer> produtoQuantidade;
+    @ManyToMany
+    @JoinTable(name = "producao_produto",
+            joinColumns = @JoinColumn(name = "idProducao"),
+            inverseJoinColumns = @JoinColumn(name = "idProduto"))
+    private List<Produto> produtos;
 
     public float calcularProducaoArtesao(Map<Produto,Integer> produtoQuantidade){
         return 0f;

@@ -7,6 +7,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+
 @Setter
 @Getter
 @Entity
@@ -17,11 +18,15 @@ public class Pedido {
     private LocalDateTime dataPedido;
     private LocalDateTime dataEntrega;
 
-    @Transient
-    private Map<Produto, Integer> produto;
+    @ManyToMany
+    @JoinTable(name = "pedido_produto",
+            joinColumns = @JoinColumn(name = "idPedido"),
+            inverseJoinColumns = @JoinColumn(name = "idProduto"))
+    private List<Produto> produtos;
+
     private float valorTotal;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne
     @JoinColumn(name = "idCliente")
     private Cliente cliente;
 

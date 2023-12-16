@@ -19,6 +19,9 @@ public class Cliente implements ClienteOuProspecto {
     private String telefone;
     private String email;
 
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Pedido> pedido;
+
     @Override
     public String toString(){
         return String.format("nome (%s) - cnpjOuCpf (%s) - telefone (%s) - email (%s)", nome, cnpjOuCpf, telefone, email);

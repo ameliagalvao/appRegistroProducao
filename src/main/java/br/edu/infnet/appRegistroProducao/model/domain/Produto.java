@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -24,6 +26,14 @@ public abstract class Produto {
     private float custoTotalMateriais;
     private float custoTotalMaoDeObra;
     private float custoTotalProduto;
+
+    @ManyToMany(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "idProducao")
+    private List<Producao> producoes;
+
+    @ManyToMany(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "idPedido")
+    private List<Pedido> pedidos;
 
     public String toString(){
         return String.format("sku (%s) - nome (%s) - tempoProducao (%.2f) - valorMaoDeObra (%.2f) - custoTotalMateriais (%.2f) - custoTotalMaoDeObra (%.2f) - custoTotalProduto (%.2f)",

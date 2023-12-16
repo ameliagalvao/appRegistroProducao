@@ -3,6 +3,7 @@ package br.edu.infnet.appRegistroProducao;
 import br.edu.infnet.appRegistroProducao.model.domain.Artesao;
 import br.edu.infnet.appRegistroProducao.model.domain.Pedido;
 import br.edu.infnet.appRegistroProducao.model.domain.Producao;
+import br.edu.infnet.appRegistroProducao.model.domain.Produto;
 import br.edu.infnet.appRegistroProducao.model.service.ProducaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -18,6 +19,7 @@ import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Locale;
 
 @Order(6)
@@ -56,6 +58,7 @@ public class ProducaoLoader implements ApplicationRunner {
                 }
                 producao.setArtesao(artesao);
                 producao.setPedido(pedido);
+                producao.setProdutos(new ArrayList<Produto>());
                 producaoService.incluir(producao);
 
                 line = br.readLine();

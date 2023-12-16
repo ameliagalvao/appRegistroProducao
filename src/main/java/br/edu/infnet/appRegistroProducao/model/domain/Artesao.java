@@ -21,6 +21,9 @@ public class Artesao {
     private Map<String, String> dadosPagamento;
     private String telefone;
 
+    @OneToMany(mappedBy = "artesao", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Producao> producao;
+
     @Override
     public String toString(){
         return String.format("nome (%s) - cpf (%s) - telefone (%s)", nome, cpf, telefone);
