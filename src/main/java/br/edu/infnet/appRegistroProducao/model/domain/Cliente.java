@@ -18,8 +18,9 @@ public class Cliente implements ClienteOuProspecto {
     private String cnpjOuCpf;
     private String telefone;
     private String email;
+
     @OneToMany
-    @JoinColumn(name = "idPedidoCliente")
+    @JoinColumn(name = "ClientePedido")
     private List<Pedido> pedidos;
 
     @Override

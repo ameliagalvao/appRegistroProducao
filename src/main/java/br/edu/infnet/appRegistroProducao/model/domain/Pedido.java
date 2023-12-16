@@ -16,17 +16,21 @@ public class Pedido {
     private Integer idPedido;
     private LocalDateTime dataPedido;
     private LocalDateTime dataEntrega;
+
     @Transient
     private Map<Produto, Integer> produto;
-    private LocalDateTime prazo;
     private float valorTotal;
+
     @ManyToOne
-    @JoinColumn(name = "idPedidoCliente")
+    @JoinColumn(name = "ClientePedido")
     private Cliente cliente;
-    @OneToMany(mappedBy = "pedido")
+
+    @OneToMany
+    @JoinColumn(name = "PedidoProducao")
     private List<Producao> producoes;
+
     private boolean isPago;
-    @Transient
+
     private AndamentoEnum andamentoPedido;
 
     public LocalDateTime calcularPrazo(LocalDateTime dataPedido, LocalDateTime dataEntrega){

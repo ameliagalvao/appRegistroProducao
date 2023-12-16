@@ -20,7 +20,9 @@ public class Artesao {
     @Transient
     private Map<String, String> dadosPagamento;
     private String telefone;
-    @ManyToMany(mappedBy = "artesaos")
+
+    @OneToMany
+    @JoinColumn(name = "ArtesaoProducao")
     private List<Producao> listaProducao;
 
     @Override

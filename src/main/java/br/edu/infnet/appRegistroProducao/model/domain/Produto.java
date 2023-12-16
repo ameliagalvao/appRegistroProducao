@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Embeddable
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Produto {
 
