@@ -17,4 +17,8 @@ public class ProducaoService {
     public Collection<Producao> obterLista(){
         return  (Collection<Producao>) producaoRepository.findAll();
     }
+
+    public void excluir(Integer id) {
+        producaoRepository.deleteById(id);
+    }
 }

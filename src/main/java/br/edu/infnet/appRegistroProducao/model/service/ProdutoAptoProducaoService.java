@@ -18,4 +18,8 @@ public class ProdutoAptoProducaoService {
     public Collection<ProdutoAptoProducao> obterLista(){
         return (Collection<ProdutoAptoProducao>) produtoAptoRepository.findAll();
     }
+
+    public void excluir(Integer id) {
+        produtoAptoRepository.deleteById(id);
+    }
 }

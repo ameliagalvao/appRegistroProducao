@@ -18,4 +18,8 @@ public class PedidoService {
     public Collection<Pedido> obterLista(){
         return  (Collection<Pedido>) pedidoRepository.findAll();
     }
+
+    public void excluir(Integer id) {
+        pedidoRepository.deleteById(id);
+    }
 }

@@ -19,4 +19,8 @@ public class ArtesaoService {
     public Collection<Artesao> obterLista(){
         return  (Collection<Artesao>) artesaoRepository.findAll();
     }
+
+    public void excluir(Integer id) {
+        artesaoRepository.deleteById(id);
+    }
 }

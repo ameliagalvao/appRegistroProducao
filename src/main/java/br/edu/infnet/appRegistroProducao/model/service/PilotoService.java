@@ -18,4 +18,9 @@ public class PilotoService {
     public Collection<Piloto> obterLista(){
         return (Collection<Piloto>) pilotoRepository.findAll();
     }
+
+    public void excluir(Integer id) {
+        pilotoRepository.deleteById(id);
+    }
+
 }
