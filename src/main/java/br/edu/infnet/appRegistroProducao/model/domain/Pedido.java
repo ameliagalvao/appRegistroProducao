@@ -19,7 +19,7 @@ public class Pedido {
     private LocalDateTime dataEntrega;
 
     @ManyToMany
-    @JoinTable(name = "pedido_produto",
+    @JoinTable(name = "produtoPedido",
             joinColumns = @JoinColumn(name = "idPedido"),
             inverseJoinColumns = @JoinColumn(name = "idProduto"))
     private List<Produto> produtos;

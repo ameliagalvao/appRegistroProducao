@@ -28,7 +28,7 @@ public class Producao {
     private Artesao artesao;
 
     @ManyToMany
-    @JoinTable(name = "producao_produto",
+    @JoinTable(name = "produtoProducao",
             joinColumns = @JoinColumn(name = "idProducao"),
             inverseJoinColumns = @JoinColumn(name = "idProduto"))
     private List<Produto> produtos;
