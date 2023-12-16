@@ -18,11 +18,11 @@ public class Producao {
     private LocalDateTime dataFinal;
     private AndamentoEnum andamentoProducao;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "PedidoProducao")
     private Pedido pedido;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "ArtesaoProducao")
     private Artesao artesao;
 

@@ -21,7 +21,7 @@ public class Pedido {
     private Map<Produto, Integer> produto;
     private float valorTotal;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "ClientePedido")
     private Cliente cliente;
 

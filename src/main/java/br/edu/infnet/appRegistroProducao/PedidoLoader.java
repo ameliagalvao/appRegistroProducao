@@ -51,9 +51,6 @@ public class PedidoLoader implements ApplicationRunner {
                     System.err.println("Error parsing date: ");
                     e.printStackTrace();
                 }
-
-                pedido.setPrazo(LocalDateTime.now().plusDays(Long.parseLong(campos[2])));
-                pedido.setValorTotal(Float.parseFloat(campos[3].replace(",", "."))); // Replace comma with dot for correct float parsing
                 pedido.setPago(Boolean.parseBoolean(campos[4]));
 
                 pedidoService.incluir(pedido);
